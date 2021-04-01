@@ -1,9 +1,3 @@
 {
-  "contacts": [
-    {
-      "name": "booba",
-      "number": "213243",
-      "id": 1
-    }
-  ]
+  "contacts": []
 }

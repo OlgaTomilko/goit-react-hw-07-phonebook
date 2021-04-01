@@ -6,7 +6,7 @@ import contactsSelectors from "../../redux/contacts/contacts-selectors";
 import Button from "@material-ui/core/Button";
 
 const ContactList = ({
-  filter,
+  // filter,
   contacts,
   isLoading,
   onDelete,
@@ -15,42 +15,46 @@ const ContactList = ({
 }) => {
   useEffect(() => fetchContacts(), []);
 
-  const onFilterContacts = () => {
-    const filterContacts = contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-    return filterContacts;
-  };
+  // const onFilterContacts = () => {
+  //   const filterContacts = contacts.filter((contact) =>
+  //     contact.name.toLowerCase().includes(filter.toLowerCase())
+  //   );
+  //   return filterContacts;
+  // };
 
   const handlerDelete = (event) => {
     onDelete(event.currentTarget.id);
     onClose();
   };
-  {
-    /* <p>Loading...</p>  isLoading &&*/
-  }
+
   return (
-    <ul>
-      {(filter ? onFilterContacts() : contacts).map(({ id, name, number }) => (
-        <li key={id}>
-          {name}: {number}
-          <Button
-            color="secondary"
-            type="button"
-            id={id}
-            onClick={handlerDelete}
-          >
-            Delete
-          </Button>
-        </li>
-      ))}
-    </ul>
+    <>
+      {isLoading && <p>Loading...</p>}
+      <ul>
+        {
+          // (filter ? onFilterContacts() : contacts)
+          contacts.map(({ id, name, number }) => (
+            <li key={id}>
+              {name}: {number}
+              <Button
+                color="secondary"
+                type="button"
+                id={id}
+                onClick={handlerDelete}
+              >
+                Delete
+              </Button>
+            </li>
+          ))
+        }
+      </ul>
+    </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    contacts: contactsSelectors.getContacts(state),
+    contacts: contactsSelectors.getVisibleContacts(state),
     filter: contactsSelectors.getFilter(state),
     isLoading: contactsSelectors.getLoading(state),
   };
@@ -62,7 +66,7 @@ const mapDispatchProps = (dispatch) => ({
 });
 
 ContactList.propTypes = {
-  filter: PropTypes.string,
+  // filter: PropTypes.string,
   contacts: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
