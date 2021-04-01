@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import operations from "../../redux/contacts/contacts-operations";
+import contactsSelectors from "../../redux/contacts/contacts-selectors";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
@@ -54,7 +55,7 @@ const ContactForm = ({ contacts, onAdd }) => {
 
 const mapStateToProps = (state) => {
   return {
-    contacts: state.contacts.items,
+    contacts: contactsSelectors.getContacts(state),
   };
 };
 

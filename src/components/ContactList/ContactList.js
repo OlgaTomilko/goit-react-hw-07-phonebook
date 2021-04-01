@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import operations from "../../redux/contacts/contacts-operations";
+import contactsSelectors from "../../redux/contacts/contacts-selectors";
 import Button from "@material-ui/core/Button";
 
 const ContactList = ({
@@ -49,9 +50,9 @@ const ContactList = ({
 
 const mapStateToProps = (state) => {
   return {
-    contacts: state.contacts.items,
-    filter: state.contacts.filter,
-    isLoading: state.loading,
+    contacts: contactsSelectors.getContacts(state),
+    filter: contactsSelectors.getFilter(state),
+    isLoading: contactsSelectors.getLoading(state),
   };
 };
 
