@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import operations from "../../redux/contacts/contacts-operations";
-import contactsSelectors from "../../redux/contacts/contacts-selectors";
+import { contactsOperations, contactsSelectors } from "../../redux/contacts";
 import Button from "@material-ui/core/Button";
 
 const ContactList = ({
@@ -61,8 +60,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchProps = (dispatch) => ({
-  fetchContacts: () => dispatch(operations.fetchContacts()),
-  onDelete: (id) => dispatch(operations.deleteContact(id)),
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
+  onDelete: (id) => dispatch(contactsOperations.deleteContact(id)),
 });
 
 ContactList.propTypes = {

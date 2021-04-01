@@ -19,9 +19,14 @@ export const deleteContactError = createAction("contacts/deleteContactError");
 export const updateFilter = createAction("phonebook/Update_filter");
 
 // export default {
+//   fetchContactRequest,
+//   fetchContactSuccess,
+//   fetchContactError,
 //   addContactRequest,
 //   addContactSuccess,
 //   addContactError,
-//   deleteContact,
+//   deleteContactRequest,
+//   deleteContactSuccess,
+//   deleteContactError,
 //   updateFilter,
 // };
